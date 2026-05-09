@@ -1,0 +1,843 @@
+<!-- ok so i spent way too long picking these colors but i think it's worth it -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mariam Oudeh — Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #d4829a;
+    --hot-pink: #c06a84;
+    --purple: #a98bc4;
+    --deep-purple: #917ab0;
+    --blush: #f2d4de;
+    --bg: #1a1318;
+    --bg2: #1f171c;
+    --bg3: #231b20;
+    --card: #261d22;
+    --card2: #2e2228;
+    --text: #f5eaee;
+    --muted: #b89aa4;
+    --gold: #c9a96e;
+    --dim: #6b5560;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor — yes it's a cat paw, no i will not be taking questions */
+  .cursor {
+    width: 32px;
+    height: 32px;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease;
+  }
+  .cursor svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--pink);
+    opacity: 0.85;
+    transition: transform 0.15s ease;
+  }
+  .cursor-ring {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--pink);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.35s ease, opacity 0.2s;
+    transform: translate(-50%, -50%);
+    opacity: 0.25;
+  }
+
+  /* Stars background — because why not */
+  .stars {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .star {
+    position: absolute;
+    background: var(--blush);
+    border-radius: 50%;
+    animation: twinkle var(--dur) ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.3); }
+  }
+
+  /* Nav — kept it simple, i hate navbars that are too busy */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(12px);
+    background: rgba(13, 6, 16, 0.7);
+    border-bottom: 1px solid rgba(255, 110, 180, 0.1);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--pink);
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--gold); font-style: italic; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    font-family: 'DM Mono', monospace;
+  }
+  .nav-links a:hover { color: var(--pink); }
+
+  /* Sections */
+  section { position: relative; z-index: 1; }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-content { max-width: 700px; }
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--pink);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--pink);
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    font-weight: 700;
+    margin-bottom: 0.2em;
+  }
+  h1 .name-accent { color: var(--pink); }
+  h1 .name-last {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--purple);
+  }
+  .hero-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 1rem;
+    color: var(--muted);
+    margin: 1.5rem 0 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-sub .highlight { color: var(--blush); }
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn-primary {
+    background: var(--pink);
+    color: #f5eaee;
+    padding: 0.85rem 2rem;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.15s;
+    font-family: 'DM Mono', monospace;
+  }
+  .btn-primary:hover { background: var(--hot-pink); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid var(--dim);
+    color: var(--muted);
+    padding: 0.85rem 2rem;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: border-color 0.2s, color 0.2s;
+    font-family: 'DM Mono', monospace;
+  }
+  .btn-outline:hover { border-color: var(--pink); color: var(--pink); }
+
+  /* Floating code card — this took forever to get the colors right btw */
+  .hero-deco {
+    position: absolute;
+    right: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 380px;
+  }
+  .code-card {
+    background: var(--card);
+    border: 1px solid rgba(255, 110, 180, 0.2);
+    border-radius: 4px;
+    padding: 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    line-height: 2;
+    animation: float 5s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .code-card .c-pink { color: var(--pink); }
+  .code-card .c-purple { color: var(--purple); }
+  .code-card .c-gold { color: var(--gold); }
+  .code-card .c-muted { color: var(--dim); }
+  .code-card .c-blush { color: var(--blush); }
+  .code-bar {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255,110,180,0.1);
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot.red { background: #ff5f57; }
+  .dot.yellow { background: #febc2e; }
+  .dot.green { background: #28c840; }
+
+  /* About */
+  .about {
+    padding: 6rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-label::before {
+    content: '//';
+    color: var(--dim);
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  h2 em { color: var(--pink); font-style: italic; }
+  .about-text p {
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+  .about-text p strong { color: var(--blush); font-weight: 400; }
+  .about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.35rem 0.9rem;
+    border: 1px solid rgba(255, 110, 180, 0.25);
+    border-radius: 2px;
+    color: var(--pink);
+    letter-spacing: 0.1em;
+  }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid rgba(255, 110, 180, 0.1);
+    border-radius: 4px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .stat-card:hover { border-color: rgba(255, 110, 180, 0.4); transform: translateY(-3px); }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--pink);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* Projects */
+  .projects {
+    padding: 6rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .projects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--card);
+    border: 1px solid rgba(255, 110, 180, 0.1);
+    border-radius: 4px;
+    padding: 2rem;
+    transition: border-color 0.2s, transform 0.2s, background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--pink), var(--purple));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .project-card:hover::before { transform: scaleX(1); }
+  .project-card:hover { border-color: rgba(255, 110, 180, 0.3); transform: translateY(-4px); background: var(--card2); }
+  .project-icon {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--pink);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .project-icon::before { content: '★'; color: var(--gold); }
+  .project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+  .project-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .stack-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.25rem 0.6rem;
+    background: rgba(192, 132, 252, 0.1);
+    border: 1px solid rgba(192, 132, 252, 0.2);
+    border-radius: 2px;
+    color: var(--purple);
+  }
+
+  /* Skills */
+  .skills {
+    padding: 6rem 4rem;
+    background: var(--bg2);
+    border-top: 1px solid rgba(255,110,180,0.08);
+    border-bottom: 1px solid rgba(255,110,180,0.08);
+  }
+  .skills-inner { max-width: 1200px; margin: 0 auto; }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .skill-group {
+    background: var(--card);
+    border: 1px solid rgba(255,110,180,0.1);
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+  .skill-group-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--pink);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255,110,180,0.1);
+  }
+  .skill-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .skill-list li {
+    font-size: 0.82rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .skill-list li::before {
+    content: '◆';
+    font-size: 0.4rem;
+    color: var(--pink);
+    flex-shrink: 0;
+  }
+
+  /* Contact */
+  .contact {
+    padding: 6rem 4rem;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .contact h2 { margin-bottom: 1rem; }
+  .contact p {
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    font-size: 0.95rem;
+  }
+  .contact-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Footer */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid rgba(255,110,180,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--dim);
+  }
+  footer .heart { color: var(--pink); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--pink); border-radius: 2px; }
+
+  /* Divider */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,110,180,0.3), transparent);
+    margin: 0;
+  }
+
+  /* Blobs */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.12;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .hero { padding: 7rem 2rem 4rem; flex-direction: column; }
+    .hero-deco { display: none; }
+    .about { grid-template-columns: 1fr; padding: 4rem 2rem; }
+    .projects { padding: 4rem 2rem; }
+    .skills { padding: 4rem 2rem; }
+    .contact { padding: 4rem 2rem; }
+    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor">
+  <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <!-- main pad -->
+    <ellipse cx="32" cy="42" rx="13" ry="11"/>
+    <!-- top left toe -->
+    <ellipse cx="14" cy="28" rx="6" ry="7" transform="rotate(-20 14 28)"/>
+    <!-- top center-left toe -->
+    <ellipse cx="25" cy="22" rx="6" ry="7" transform="rotate(-7 25 22)"/>
+    <!-- top center-right toe -->
+    <ellipse cx="37" cy="22" rx="6" ry="7" transform="rotate(7 37 22)"/>
+    <!-- top right toe -->
+    <ellipse cx="49" cy="28" rx="6" ry="7" transform="rotate(20 49 28)"/>
+  </svg>
+</div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Stars -->
+<!-- generated in JS below, scroll down if you're looking for it -->
+<div class="stars" id="stars"></div>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-logo">M.<span>O</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<!-- Hero — first impression, no pressure -->
+<section class="hero">
+  <div class="blob" style="width:500px;height:500px;background:var(--pink);top:-100px;left:-100px;"></div>
+  <div class="blob" style="width:400px;height:400px;background:var(--purple);bottom:0;right:200px;"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">Computer Engineering · Sacramento, CA</div>
+    <h1>
+      <span class="name-accent">Mariam</span>
+      <span class="name-last">Oudeh.</span>
+    </h1>
+    <div class="hero-sub">
+      Senior CE student · <span class="highlight">Embedded Systems</span> · Biomedical Tech<br>
+      Building hardware that works in the real world.
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-deco">
+    <div class="code-card">
+      <div class="code-bar">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+      </div>
+      <div><span class="c-muted">// mariam_oudeh.h</span></div>
+      <div><span class="c-purple">struct</span> <span class="c-blush">Engineer</span> {</div>
+      <div>&nbsp;&nbsp;<span class="c-pink">char</span> *major = <span class="c-gold">"Computer Eng"</span>;</div>
+      <div>&nbsp;&nbsp;<span class="c-pink">bool</span> girly = <span class="c-purple">true</span>;</div>
+      <div>&nbsp;&nbsp;<span class="c-pink">bool</span> nerdy = <span class="c-purple">true</span>;</div>
+      <div>&nbsp;&nbsp;<span class="c-pink">float</span> coffee = <span class="c-gold">INFINITY</span>;</div>
+      <div>&nbsp;&nbsp;<span class="c-muted">// cat is watching 🐱</span></div>
+      <div>};</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- About -->
+<!-- About — tried to keep this short, i know nobody reads these -->
+<section class="about" id="about">
+  <div class="about-text">
+    <div class="section-label">About Me</div>
+    <h2>Engineer by logic,<br><em>creative</em> by nature.</h2>
+    <p>
+      I'm a senior Computer Engineering student at <strong>CSU Sacramento</strong>, graduating Fall 2026. I work primarily in embedded systems and hardware, with a particular interest in biomedical applications.
+    </p>
+    <p>
+      I also work as an Outreach Specialist, mentor, and tutor through <strong>TRIO Educational Talent Search</strong> at American River College, supporting first-generation and low-income middle school students.
+    </p>
+    <div class="about-tags">
+      <span class="tag">STM32</span>
+      <span class="tag">ESP32</span>
+      <span class="tag">BLE</span>
+      <span class="tag">PCB Design</span>
+      <span class="tag">C/C++</span>
+      <span class="tag">Python</span>
+      <span class="tag">EasyEDA</span>
+      <span class="tag">Girls Who Code</span>
+      <span class="tag">SWE</span>
+    </div>
+  </div>
+  <div class="about-stats">
+    <div class="stat-card">
+      <div class="stat-num">3+</div>
+      <div class="stat-label">Years mentoring first-gen students</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Campus organizations</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">A.S.</div>
+      <div class="stat-label">Computer Science · ARC 2024</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Coffees consumed, zero regrets</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Projects -->
+<!-- Projects — the actual important part lol -->
+<section class="projects" id="projects">
+  <div class="projects-header">
+    <div>
+      <div class="section-label">My Work</div>
+      <h2>Things I've <em>built.</em></h2>
+    </div>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-icon">Capstone · In Progress</div>
+      <div class="project-title">Automated Hydroponic Greenhouse</div>
+      <div class="project-desc">
+        Multi-channel LED lighting system with PWM control for blue (440nm), red (660nm), and NIR (850nm) channels. Custom 4-channel MOSFET PCB, 14 crop-specific lighting profiles, STM32-based control.
+      </div>
+      <div class="project-stack">
+        <span class="stack-tag">STM32</span>
+        <span class="stack-tag">PWM</span>
+        <span class="stack-tag">EasyEDA</span>
+        <span class="stack-tag">JLCPCB</span>
+        <span class="stack-tag">C</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">Research Project · In Progress</div>
+      <div class="project-title">Wearable Glucose Monitor</div>
+      <div class="project-desc">
+        BLE-based glucose monitoring bracelet using XIAO ESP32-S3. Successfully scanned Dexcom G7 device, implementing J-PAKE authentication via mbedTLS to access real glucose data on-device.
+      </div>
+      <div class="project-stack">
+        <span class="stack-tag">ESP32</span>
+        <span class="stack-tag">BLE</span>
+        <span class="stack-tag">mbedTLS</span>
+        <span class="stack-tag">C++</span>
+        <span class="stack-tag">J-PAKE</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">Completed · 2025</div>
+      <div class="project-title">Bluetooth RC Car</div>
+      <div class="project-desc">
+        Bluetooth-controlled car built on STM32L432KC with UART command parsing and PWM differential drive. Full firmware written in C with real-time motor control.
+      </div>
+      <div class="project-stack">
+        <span class="stack-tag">STM32</span>
+        <span class="stack-tag">UART</span>
+        <span class="stack-tag">PWM</span>
+        <span class="stack-tag">Bluetooth</span>
+        <span class="stack-tag">C</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">Software · C++</div>
+      <div class="project-title">Mandelbrot Visualizer & Particle Sim</div>
+      <div class="project-desc">
+        High-performance Mandelbrot set renderer and particle physics simulation in C++. Explores complex number iteration and real-time rendering.
+      </div>
+      <div class="project-stack">
+        <span class="stack-tag">C++</span>
+        <span class="stack-tag">Graphics</span>
+        <span class="stack-tag">Physics Sim</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">Records System · 2022–Present</div>
+      <div class="project-title">TRIO Digital Records System</div>
+      <div class="project-desc">
+        Built a complete digital records infrastructure from scratch for TRIO Educational Talent Search at ARC. Handles student data, federal compliance documentation, and program coordination for 150+ students.
+      </div>
+      <div class="project-stack">
+        <span class="stack-tag">Data Systems</span>
+        <span class="stack-tag">Federal Compliance</span>
+        <span class="stack-tag">Program Design</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Skills -->
+<!-- Skills — yes i actually know all of these -->
+<section class="skills" id="skills">
+  <div class="skills-inner">
+    <div class="section-label">Toolkit</div>
+    <h2>What I work <em>with.</em></h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Embedded Systems</div>
+        <ul class="skill-list">
+          <li>STM32 (L432KC, H753ZIT6)</li>
+          <li>ESP32 / XIAO ESP32-S3</li>
+          <li>UART / SPI / I2C / PWM</li>
+          <li>BLE Protocol</li>
+          <li>mbedTLS</li>
+          <li>FreeRTOS concepts</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Hardware & PCB</div>
+        <ul class="skill-list">
+          <li>EasyEDA</li>
+          <li>JLCPCB Fabrication</li>
+          <li>LTspice / PSpice</li>
+          <li>MOSFET driver circuits</li>
+          <li>Schematic design</li>
+          <li>PCB layout & review</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <ul class="skill-list">
+          <li>C / C++</li>
+          <li>Python</li>
+          <li>Java</li>
+          <li>HTML / CSS / JS</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Areas of Interest</div>
+        <ul class="skill-list">
+          <li>Biomedical devices</li>
+          <li>Bioelectronics</li>
+          <li>Electrical engineering</li>
+          <li>Photonics & optics</li>
+          <li>Power systems</li>
+          <li>Signal processing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Contact -->
+<!-- Contact — please actually reach out, i don't bite -->
+<section class="contact" id="contact">
+  <div class="blob" style="width:400px;height:400px;background:var(--purple);top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.08;"></div>
+  <div class="section-label" style="justify-content:center;">Let's Connect</div>
+  <h2>Say <em>hello.</em></h2>
+  <p>
+    Open to internship opportunities and research collaborations in embedded systems and biomedical tech.
+  </p>
+  <div class="contact-links">
+    <a href="mailto:m3oudeh@gmail.com" class="btn-primary">Email Me</a>
+    <a href="https://www.linkedin.com/in/mariam-oudeh/" class="btn-outline" target="_blank">LinkedIn</a>
+    <a href="https://github.com/oudehm" class="btn-outline" target="_blank">GitHub</a>
+    <a href="Mariam_Oudeh_Resume.pdf" class="btn-outline" target="_blank">Resume</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2026 Mariam Oudeh · Powered by coffee · Supervised by my cat</p>
+  <p>Sacramento, CA · CSU Sacramento CE '26</p>
+</footer>
+
+<script>
+  // ok here's where the magic happens (or where things break, we'll see)
+
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animateCursor() {
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1.4) rotate(-15deg)'; ring.style.opacity = '0'; });
+    el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1) rotate(0deg)'; ring.style.opacity = '0.25'; });
+  });
+
+  // Stars — 80 felt like the right number, don't ask me why
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2.5 + 1;
+    s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${Math.random()*3+2}s;animation-delay:${Math.random()*4}s;`;
+    starsEl.appendChild(s);
+  }
+</script>
+</body>
+</html>
