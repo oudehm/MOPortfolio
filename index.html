@@ -4,8 +4,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mariam Oudeh — Engineer</title>
+<title>Mariam Oudeh, Engineer</title>
+<meta name="description" content="Mariam Oudeh is a Senior Computer Engineering student at CSU Sacramento specializing in embedded systems, PCB design, and biomedical technology.">
+<meta property="og:title" content="Mariam Oudeh, Engineer">
+<meta property="og:description" content="Senior CPE student at CSU Sacramento. Embedded systems, PCB design, and biomedical tech. Open to internships and research collaborations.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='42' rx='13' ry='11' fill='%23d4829a'/%3E%3Cellipse cx='14' cy='28' rx='6' ry='7' transform='rotate(-20 14 28)' fill='%23d4829a'/%3E%3Cellipse cx='25' cy='22' rx='6' ry='7' transform='rotate(-7 25 22)' fill='%23d4829a'/%3E%3Cellipse cx='37' cy='22' rx='6' ry='7' transform='rotate(7 37 22)' fill='%23d4829a'/%3E%3Cellipse cx='49' cy='28' rx='6' ry='7' transform='rotate(20 49 28)' fill='%23d4829a'/%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 <style>
   :root {
     --pink: #d4829a;
@@ -25,7 +31,6 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -37,7 +42,13 @@
     cursor: none;
   }
 
-  /* Custom cursor — yes it's a cat paw, no i will not be taking questions */
+  /* Restore cursor on touch devices — custom cursor doesn't make sense there */
+  @media (pointer: coarse) {
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none !important; }
+  }
+
+  /* Custom cursor */
   .cursor {
     width: 32px;
     height: 32px;
@@ -67,7 +78,7 @@
     opacity: 0.25;
   }
 
-  /* Stars background — because why not */
+  /* Stars */
   .stars {
     position: fixed;
     top: 0; left: 0;
@@ -87,7 +98,7 @@
     50% { opacity: 0.8; transform: scale(1.3); }
   }
 
-  /* Nav — kept it simple, i hate navbars that are too busy */
+  /* Nav */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -105,6 +116,7 @@
     font-size: 1.3rem;
     color: var(--pink);
     letter-spacing: 0.02em;
+    z-index: 200;
   }
   .nav-logo span { color: var(--gold); font-style: italic; }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
@@ -119,6 +131,41 @@
   }
   .nav-links a:hover { color: var(--pink); }
 
+  /* Hamburger — only shows on small screens */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 200;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 1px;
+    background: var(--pink);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    transform-origin: center;
+  }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+    transition-delay: var(--reveal-delay, 0s);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   /* Sections */
   section { position: relative; z-index: 1; }
 
@@ -130,8 +177,33 @@
     padding: 8rem 4rem 4rem;
     position: relative;
     overflow: hidden;
+    gap: 3rem;
   }
-  .hero-content { max-width: 700px; }
+  .hero-content { max-width: 600px; flex-shrink: 0; }
+
+  /* Profile photo — swap the inner span for <img src="..."> when ready */
+  .hero-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(212, 130, 154, 0.4);
+    box-shadow: 0 0 30px rgba(212, 130, 154, 0.15);
+    background: var(--card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.75rem;
+    flex-shrink: 0;
+  }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .photo-initials {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--pink);
+    font-style: italic;
+  }
+
   .hero-tag {
     font-family: 'DM Mono', monospace;
     font-size: 0.75rem;
@@ -177,6 +249,8 @@
     flex-wrap: wrap;
     align-items: center;
   }
+
+  /* Buttons */
   .btn-primary {
     background: var(--pink);
     color: #f5eaee;
@@ -205,13 +279,13 @@
   }
   .btn-outline:hover { border-color: var(--pink); color: var(--pink); }
 
-  /* Floating code card — this took forever to get the colors right btw */
+  /* Code card — no longer hidden on mobile, just re-flows */
   .hero-deco {
-    position: absolute;
-    right: 4rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 380px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 0;
   }
   .code-card {
     background: var(--card);
@@ -222,6 +296,8 @@
     font-size: 0.75rem;
     line-height: 2;
     animation: float 5s ease-in-out infinite;
+    width: 100%;
+    max-width: 360px;
   }
   @keyframes float {
     0%, 100% { transform: translateY(0); }
@@ -265,10 +341,7 @@
     align-items: center;
     gap: 0.75rem;
   }
-  .section-label::before {
-    content: '//';
-    color: var(--dim);
-  }
+  .section-label::before { content: '//'; color: var(--dim); }
   h2 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2rem, 3.5vw, 2.8rem);
@@ -319,10 +392,80 @@
     line-height: 1;
     margin-bottom: 0.5rem;
   }
-  .stat-label {
-    font-size: 0.75rem;
+  .stat-label { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.05em; }
+
+  /* Experience / Timeline */
+  .experience {
+    padding: 6rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .timeline {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .timeline-item {
+    padding: 0 0 2.75rem 2rem;
+    border-left: 1px solid rgba(212, 130, 154, 0.18);
+    position: relative;
+  }
+  .timeline-item:last-child { padding-bottom: 0; border-left-color: transparent; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--pink);
+    box-shadow: 0 0 10px rgba(212, 130, 154, 0.5);
+  }
+  .timeline-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--dim);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+  .timeline-date.current { color: var(--pink); }
+  .timeline-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+  .timeline-place {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--pink);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .timeline-desc {
+    font-size: 0.88rem;
     color: var(--muted);
-    letter-spacing: 0.05em;
+    line-height: 1.85;
+    max-width: 680px;
+  }
+  .timeline-desc strong { color: var(--blush); font-weight: 400; }
+  .timeline-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+  }
+  .timeline-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.63rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(212, 130, 154, 0.07);
+    border: 1px solid rgba(212, 130, 154, 0.18);
+    border-radius: 2px;
+    color: var(--muted);
+    letter-spacing: 0.07em;
   }
 
   /* Projects */
@@ -350,6 +493,8 @@
     transition: border-color 0.2s, transform 0.2s, background 0.2s;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
   .project-card::before {
     content: '';
@@ -383,8 +528,17 @@
   .project-desc {
     font-size: 0.85rem;
     color: var(--muted);
-    line-height: 1.8;
+    line-height: 1.85;
     margin-bottom: 1.5rem;
+    flex: 1;
+  }
+  .project-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: auto;
   }
   .project-stack {
     display: flex;
@@ -400,6 +554,18 @@
     border-radius: 2px;
     color: var(--purple);
   }
+  .project-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--dim);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    transition: color 0.2s;
+    flex-shrink: 0;
+  }
+  .project-link:hover { color: var(--pink); }
+  .project-link::after { content: ' →'; }
 
   /* Skills */
   .skills {
@@ -427,9 +593,16 @@
     color: var(--pink);
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    margin-bottom: 1rem;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid rgba(255,110,180,0.1);
+    margin-bottom: 0.3rem;
+  }
+  .skill-group-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--dim);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
   }
   .skill-list {
     list-style: none;
@@ -480,11 +653,7 @@
     justify-content: space-between;
     align-items: center;
   }
-  footer p {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--dim);
-  }
+  footer p { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--dim); }
   footer .heart { color: var(--pink); }
 
   /* Scrollbar */
@@ -497,7 +666,6 @@
     width: 100%;
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255,110,180,0.3), transparent);
-    margin: 0;
   }
 
   /* Blobs */
@@ -512,13 +680,37 @@
 
   @media (max-width: 900px) {
     nav { padding: 1rem 2rem; }
-    .hero { padding: 7rem 2rem 4rem; flex-direction: column; }
-    .hero-deco { display: none; }
+    .hero { padding: 7rem 2rem 4rem; flex-direction: column; gap: 2rem; }
+    .hero-deco { width: 100%; }
     .about { grid-template-columns: 1fr; padding: 4rem 2rem; }
+    .experience { padding: 4rem 2rem; }
     .projects { padding: 4rem 2rem; }
     .skills { padding: 4rem 2rem; }
     .contact { padding: 4rem 2rem; }
     footer { padding: 1.5rem 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100vh;
+      background: rgba(26, 19, 24, 0.97);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 150;
+    }
+    .nav-links.open { opacity: 1; pointer-events: all; }
+    .nav-links a { font-size: 1.1rem; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    .code-card { font-size: 0.7rem; }
   }
 </style>
 </head>
@@ -540,21 +732,23 @@
 </div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- Stars -->
-<!-- generated in JS below, scroll down if you're looking for it -->
 <div class="stars" id="stars"></div>
 
-<!-- Nav -->
 <nav>
   <div class="nav-logo">M.<span>O</span></div>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<main>
 
 <!-- Hero — first impression, no pressure -->
 <section class="hero">
@@ -562,13 +756,16 @@
   <div class="blob" style="width:400px;height:400px;background:var(--purple);bottom:0;right:200px;"></div>
 
   <div class="hero-content">
+    <div class="hero-photo">
+      <img src="photo.jpg" alt="Mariam Oudeh">
+    </div>
     <div class="hero-tag">Computer Engineering · Sacramento, CA</div>
     <h1>
       <span class="name-accent">Mariam</span>
       <span class="name-last">Oudeh.</span>
     </h1>
     <div class="hero-sub">
-      Senior CE student · <span class="highlight">Embedded Systems</span> · Biomedical Tech<br>
+      Senior CPE student · <span class="highlight">Embedded Systems</span> · Biomedical Tech<br>
       Building hardware that works in the real world.
     </div>
     <div class="hero-cta">
@@ -598,19 +795,18 @@
 
 <div class="divider"></div>
 
-
 <!-- About — tried to keep this short, i know nobody reads these -->
 <section class="about" id="about">
   <div class="about-text">
-    <div class="section-label">About Me</div>
-    <h2>Engineer by logic,<br><em>creative</em> by nature.</h2>
-    <p>
+    <div class="section-label reveal">About Me</div>
+    <h2 class="reveal">Engineer by logic,<br><em>creative</em> by nature.</h2>
+    <p class="reveal">
       I'm a senior Computer Engineering student at <strong>CSU Sacramento</strong>, graduating Fall 2026. I work primarily in embedded systems and hardware, with a particular interest in biomedical applications.
     </p>
-    <p>
+    <p class="reveal" style="--reveal-delay: 0.08s">
       I also work as an Outreach Specialist, mentor, and tutor through <strong>TRIO Educational Talent Search</strong> at American River College, supporting first-generation and low-income middle school students.
     </p>
-    <div class="about-tags">
+    <div class="about-tags reveal" style="--reveal-delay: 0.16s">
       <span class="tag">STM32</span>
       <span class="tag">ESP32</span>
       <span class="tag">BLE</span>
@@ -623,22 +819,75 @@
     </div>
   </div>
   <div class="about-stats">
-    <div class="stat-card">
+    <div class="stat-card reveal" style="--reveal-delay: 0s">
       <div class="stat-num">3+</div>
       <div class="stat-label">Years mentoring first-gen students</div>
     </div>
-    <div class="stat-card">
+    <div class="stat-card reveal" style="--reveal-delay: 0.07s">
       <div class="stat-num">4</div>
       <div class="stat-label">Campus organizations</div>
     </div>
-    <div class="stat-card">
+    <div class="stat-card reveal" style="--reveal-delay: 0.14s">
       <div class="stat-num">A.S.</div>
-      <div class="stat-label">Computer Science · ARC 2024</div>
+      <div class="stat-label">Computer Science + Physical Science · ARC 2024</div>
     </div>
-    <div class="stat-card">
+    <div class="stat-card reveal" style="--reveal-delay: 0.21s">
       <div class="stat-num">∞</div>
       <div class="stat-label">Coffees consumed, zero regrets</div>
     </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Experience — new section -->
+<section class="experience" id="experience">
+  <div class="section-label reveal">Background</div>
+  <h2 class="reveal">Where I've <em>been.</em></h2>
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <div class="timeline-date current">2024 - Present</div>
+      <div class="timeline-role">B.S. Computer Engineering</div>
+      <div class="timeline-place">CSU Sacramento</div>
+      <div class="timeline-desc">
+        Focusing on embedded systems design, digital logic, and hardware-software integration. Senior capstone centers on a fully automated hydroponic greenhouse: custom MOSFET PCB design, STM32 firmware, and multi-wavelength LED control. Expected graduation: Fall 2026.
+      </div>
+      <div class="timeline-badges">
+        <span class="timeline-badge">Embedded Systems</span>
+        <span class="timeline-badge">Digital Design</span>
+        <span class="timeline-badge">PCB Design</span>
+        <span class="timeline-badge">Expected Fall 2026</span>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal" style="--reveal-delay: 0.1s">
+      <div class="timeline-date current">2022 - Present</div>
+      <div class="timeline-role">Outreach Specialist · Mentor · Tutor</div>
+      <div class="timeline-place">TRIO Educational Talent Search · American River College</div>
+      <div class="timeline-desc">
+        Supporting <strong>150+ first-generation and low-income middle school students</strong> in academic development and college readiness. Built the program's entire digital records infrastructure from scratch: intake workflows, student progress tracking, and federal compliance documentation for DOE audits.
+      </div>
+      <div class="timeline-badges">
+        <span class="timeline-badge">STEM Mentorship</span>
+        <span class="timeline-badge">Program Design</span>
+        <span class="timeline-badge">Federal Compliance</span>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal" style="--reveal-delay: 0.2s">
+      <div class="timeline-date">2022 - 2024</div>
+      <div class="timeline-role">A.S. Computer Science · A.S. Physical Science & Math</div>
+      <div class="timeline-place">American River College</div>
+      <div class="timeline-desc">
+        Graduated with two associate degrees simultaneously. Core curriculum covered data structures, algorithms, systems programming, and foundational physical sciences and mathematics.
+      </div>
+      <div class="timeline-badges">
+        <span class="timeline-badge">Computer Science</span>
+        <span class="timeline-badge">Physical Science & Math</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -648,80 +897,110 @@
 <section class="projects" id="projects">
   <div class="projects-header">
     <div>
-      <div class="section-label">My Work</div>
-      <h2>Things I've <em>built.</em></h2>
+      <div class="section-label reveal">My Work</div>
+      <h2 class="reveal">Things I've <em>built.</em></h2>
     </div>
   </div>
   <div class="projects-grid">
 
-    <div class="project-card">
+    <div class="project-card reveal" style="--reveal-delay: 0s">
       <div class="project-icon">Capstone · In Progress</div>
       <div class="project-title">Automated Hydroponic Greenhouse</div>
       <div class="project-desc">
-        Multi-channel LED lighting system with PWM control for blue (440nm), red (660nm), and NIR (850nm) channels. Custom 4-channel MOSFET PCB, 14 crop-specific lighting profiles, STM32-based control.
+        Designing the embedded lighting controller for a fully automated hydroponic greenhouse. Engineered a custom 4-channel MOSFET PCB to drive multi-wavelength LEDs (blue 440nm, red 660nm, NIR 850nm) via PWM, with 14 crop-specific lighting profiles. STM32-based firmware handles real-time channel switching and profile management, with PCB fabricated through JLCPCB.
       </div>
-      <div class="project-stack">
-        <span class="stack-tag">STM32</span>
-        <span class="stack-tag">PWM</span>
-        <span class="stack-tag">EasyEDA</span>
-        <span class="stack-tag">JLCPCB</span>
-        <span class="stack-tag">C</span>
+      <div class="project-footer">
+        <div class="project-stack">
+          <span class="stack-tag">STM32</span>
+          <span class="stack-tag">PWM</span>
+          <span class="stack-tag">EasyEDA</span>
+          <span class="stack-tag">JLCPCB</span>
+          <span class="stack-tag">C</span>
+        </div>
+        <a href="https://github.com/oudehm" class="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </div>
 
-    <div class="project-card">
+    <div class="project-card reveal" style="--reveal-delay: 0.08s">
       <div class="project-icon">Research Project · In Progress</div>
       <div class="project-title">Wearable Glucose Monitor</div>
       <div class="project-desc">
-        BLE-based glucose monitoring bracelet using XIAO ESP32-S3. Successfully scanned Dexcom G7 device, implementing J-PAKE authentication via mbedTLS to access real glucose data on-device.
+        Dexcom's G7 uses a proprietary BLE pairing scheme, so getting real glucose data out of it means implementing J-PAKE authentication from scratch. Built a custom wearable bracelet on the XIAO ESP32-S3 that successfully pairs with a Dexcom G7, runs the full J-PAKE handshake via mbedTLS, and reads live glucose values directly on-device. No companion app, no cloud intermediary.
       </div>
-      <div class="project-stack">
-        <span class="stack-tag">ESP32</span>
-        <span class="stack-tag">BLE</span>
-        <span class="stack-tag">mbedTLS</span>
-        <span class="stack-tag">C++</span>
-        <span class="stack-tag">J-PAKE</span>
+      <div class="project-footer">
+        <div class="project-stack">
+          <span class="stack-tag">ESP32</span>
+          <span class="stack-tag">BLE</span>
+          <span class="stack-tag">mbedTLS</span>
+          <span class="stack-tag">C++</span>
+          <span class="stack-tag">J-PAKE</span>
+        </div>
+        <a href="https://github.com/oudehm" class="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </div>
 
-    <div class="project-card">
+    <div class="project-card reveal" style="--reveal-delay: 0.16s">
       <div class="project-icon">Completed · 2025</div>
       <div class="project-title">Bluetooth RC Car</div>
       <div class="project-desc">
-        Bluetooth-controlled car built on STM32L432KC with UART command parsing and PWM differential drive. Full firmware written in C with real-time motor control.
+        Built entirely from bare metal, no HAL shortcuts. Firmware written in C for the STM32L432KC handles UART command parsing and maps character sequences to timer-based PWM outputs for differential motor drive, enabling precise directional control over Bluetooth with low-latency response.
       </div>
-      <div class="project-stack">
-        <span class="stack-tag">STM32</span>
-        <span class="stack-tag">UART</span>
-        <span class="stack-tag">PWM</span>
-        <span class="stack-tag">Bluetooth</span>
-        <span class="stack-tag">C</span>
+      <div class="project-footer">
+        <div class="project-stack">
+          <span class="stack-tag">STM32</span>
+          <span class="stack-tag">UART</span>
+          <span class="stack-tag">PWM</span>
+          <span class="stack-tag">Bluetooth</span>
+          <span class="stack-tag">C</span>
+        </div>
+        <a href="https://github.com/oudehm" class="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </div>
 
-    <div class="project-card">
+    <div class="project-card reveal" style="--reveal-delay: 0.24s">
       <div class="project-icon">Software · C++</div>
       <div class="project-title">Mandelbrot Visualizer & Particle Sim</div>
       <div class="project-desc">
-        High-performance Mandelbrot set renderer and particle physics simulation in C++. Explores complex number iteration and real-time rendering.
+        A dual-mode C++ project: an interactive Mandelbrot set renderer with deep zoom into the complex plane, and a particle physics simulation with collision detection. Built for real-time performance through optimized inner loops and cache-friendly data layouts.
       </div>
-      <div class="project-stack">
-        <span class="stack-tag">C++</span>
-        <span class="stack-tag">Graphics</span>
-        <span class="stack-tag">Physics Sim</span>
+      <div class="project-footer">
+        <div class="project-stack">
+          <span class="stack-tag">C++</span>
+          <span class="stack-tag">Graphics</span>
+          <span class="stack-tag">Physics Sim</span>
+        </div>
+        <a href="https://github.com/oudehm" class="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </div>
 
-    <div class="project-card">
+    <div class="project-card reveal" style="--reveal-delay: 0.32s">
+      <div class="project-icon">Web · In Progress</div>
+      <div class="project-title">Skystar</div>
+      <div class="project-desc">
+        Full website for a friend's small handmade business: one-of-a-kind bags and goods made from upcycled denim. Multi-page site with an animated brand splash, lookbook, events calendar, and contact/request flow. Built from scratch with a shared design system across pages.
+      </div>
+      <div class="project-footer">
+        <div class="project-stack">
+          <span class="stack-tag">HTML</span>
+          <span class="stack-tag">CSS</span>
+          <span class="stack-tag">JavaScript</span>
+        </div>
+        <a href="https://github.com/oudehm/skystar" class="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card reveal" style="--reveal-delay: 0.4s">
       <div class="project-icon">Records System · 2022–Present</div>
       <div class="project-title">TRIO Digital Records System</div>
       <div class="project-desc">
-        Built a complete digital records infrastructure from scratch for TRIO Educational Talent Search at ARC. Handles student data, federal compliance documentation, and program coordination for 150+ students.
+        Inherited a paper-based system serving 150+ first-generation college students in a federally-funded program. Designed and built the entire digital infrastructure from scratch: intake workflows, student progress tracking, and DOE compliance documentation. Actively maintained since 2022 and handles all program coordination and federal audit reporting.
       </div>
-      <div class="project-stack">
-        <span class="stack-tag">Data Systems</span>
-        <span class="stack-tag">Federal Compliance</span>
-        <span class="stack-tag">Program Design</span>
+      <div class="project-footer">
+        <div class="project-stack">
+          <span class="stack-tag">Data Systems</span>
+          <span class="stack-tag">Federal Compliance</span>
+          <span class="stack-tag">Program Design</span>
+        </div>
       </div>
     </div>
 
@@ -733,10 +1012,10 @@
 <!-- Skills — yes i actually know all of these -->
 <section class="skills" id="skills">
   <div class="skills-inner">
-    <div class="section-label">Toolkit</div>
-    <h2>What I work <em>with.</em></h2>
+    <div class="section-label reveal">Toolkit</div>
+    <h2 class="reveal">What I work <em>with.</em></h2>
     <div class="skills-grid">
-      <div class="skill-group">
+      <div class="skill-group reveal" style="--reveal-delay: 0s">
         <div class="skill-group-title">Embedded Systems</div>
         <ul class="skill-list">
           <li>STM32 (L432KC, H753ZIT6)</li>
@@ -747,7 +1026,7 @@
           <li>FreeRTOS concepts</li>
         </ul>
       </div>
-      <div class="skill-group">
+      <div class="skill-group reveal" style="--reveal-delay: 0.08s">
         <div class="skill-group-title">Hardware & PCB</div>
         <ul class="skill-list">
           <li>EasyEDA</li>
@@ -758,7 +1037,7 @@
           <li>PCB layout & review</li>
         </ul>
       </div>
-      <div class="skill-group">
+      <div class="skill-group reveal" style="--reveal-delay: 0.16s">
         <div class="skill-group-title">Languages</div>
         <ul class="skill-list">
           <li>C / C++</li>
@@ -767,8 +1046,9 @@
           <li>HTML / CSS / JS</li>
         </ul>
       </div>
-      <div class="skill-group">
-        <div class="skill-group-title">Areas of Interest</div>
+      <div class="skill-group reveal" style="--reveal-delay: 0.24s">
+        <div class="skill-group-title">Currently Exploring</div>
+        <div class="skill-group-sub">Active learning & research</div>
         <ul class="skill-list">
           <li>Biomedical devices</li>
           <li>Bioelectronics</li>
@@ -787,18 +1067,20 @@
 <!-- Contact — please actually reach out, i don't bite -->
 <section class="contact" id="contact">
   <div class="blob" style="width:400px;height:400px;background:var(--purple);top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.08;"></div>
-  <div class="section-label" style="justify-content:center;">Let's Connect</div>
-  <h2>Say <em>hello.</em></h2>
-  <p>
+  <div class="section-label reveal" style="justify-content:center;">Let's Connect</div>
+  <h2 class="reveal">Say <em>hello.</em></h2>
+  <p class="reveal">
     Open to internship opportunities and research collaborations in embedded systems and biomedical tech.
   </p>
-  <div class="contact-links">
+  <div class="contact-links reveal" style="--reveal-delay: 0.1s">
     <a href="mailto:m3oudeh@gmail.com" class="btn-primary">Email Me</a>
-    <a href="https://www.linkedin.com/in/mariam-oudeh/" class="btn-outline" target="_blank">LinkedIn</a>
-    <a href="https://github.com/oudehm" class="btn-outline" target="_blank">GitHub</a>
-    <a href="Mariam_Oudeh_Resume.pdf" class="btn-outline" target="_blank">Resume</a>
+    <a href="https://www.linkedin.com/in/mariam-oudeh/" class="btn-outline" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="https://github.com/oudehm" class="btn-outline" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="Mariam%20Oudeh%20Resume.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">Resume</a>
   </div>
 </section>
+
+</main>
 
 <!-- Footer -->
 <footer>
@@ -835,6 +1117,31 @@
     s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${Math.random()*3+2}s;animation-delay:${Math.random()*4}s;`;
     starsEl.appendChild(s);
   }
+
+  // Scroll reveals
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Hamburger menu
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navToggle.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
+  });
 </script>
 </body>
 </html>
