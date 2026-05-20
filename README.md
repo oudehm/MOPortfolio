@@ -1,9 +1,9 @@
-Mariam Oudeh — Portfolio 🐱
+Mariam Oudeh — Portfolio 
 
 my little corner of the internet. built from scratch, no frameworks, no drama. vibecoded with claude code.
 
 about:
-personal portfolio for a Computer Engineering senior at CSU Sacramento who works in embedded systems and hardware — with a soft spot for biomedical applications and an unhealthy relationship with coffee.
+personal portfolio for a Computer Engineering senior at CSU Sacramento who works in embedded systems and hardware with a soft spot for biomedical applications and an unhealthy relationship with coffee.
 
 built with
 - HTML / CSS / JavaScript — no frameworks, no build tools, just vibes
