@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mariam Oudeh — M·O·SCOPE</title>
-<meta name="description" content="Mariam Oudeh — Senior Computer Engineering student at CSU Sacramento, graduating Fall 2026. Embedded systems and firmware, wearable biomedical devices, cybersecurity and IT operations, and STEM mentorship. Open to engineering internships.">
-<meta property="og:title" content="Mariam Oudeh — M·O·SCOPE">
+<title>Mariam Oudeh. M·O·SCOPE</title>
+<meta name="description" content="Mariam Oudeh. Senior Computer Engineering student at CSU Sacramento, graduating Fall 2026. Embedded systems and firmware, wearable biomedical devices, cybersecurity and IT operations, and STEM mentorship. Open to engineering internships.">
+<meta property="og:title" content="Mariam Oudeh. M·O·SCOPE">
 <meta property="og:description" content="Senior CPE at CSU Sacramento, graduating Fall 2026. Embedded systems, wearable biomedical devices, cybersecurity/IT, STEM mentorship. Open to engineering internships.">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='42' rx='13' ry='11' fill='%23d4829a'/%3E%3Cellipse cx='14' cy='28' rx='6' ry='7' transform='rotate(-20 14 28)' fill='%23d4829a'/%3E%3Cellipse cx='25' cy='22' rx='6' ry='7' transform='rotate(-7 25 22)' fill='%23d4829a'/%3E%3Cellipse cx='37' cy='22' rx='6' ry='7' transform='rotate(7 37 22)' fill='%23d4829a'/%3E%3Cellipse cx='49' cy='28' rx='6' ry='7' transform='rotate(20 49 28)' fill='%23d4829a'/%3E%3C/svg%3E">
@@ -262,7 +262,7 @@ body {
   vector-effect: non-scaling-stroke;
 }
 
-/* ── CH1 — ID ── */
+/* ── CH1. ID ── */
 .ch1-header { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
 .ch1-photo {
   width: 66px; height: 66px; border-radius: 50%;
@@ -293,7 +293,7 @@ body {
   border-radius: 2px; letter-spacing: 0.08em;
 }
 
-/* ── CH2 — SIGNAL ── */
+/* ── CH2. SIGNAL ── */
 .ch-section-label { font-size: 0.7rem; color: var(--p3); letter-spacing: 0.18em; text-transform: uppercase; flex-shrink: 0; }
 
 .signal-list { display: flex; flex-direction: column; flex: 1; overflow-y: auto; }
@@ -320,7 +320,7 @@ body {
 .sig-link { font-size: 0.7rem; color: var(--p3); text-decoration: none; letter-spacing: 0.08em; transition: color 0.15s; margin-left: auto; white-space: nowrap; align-self: flex-start; padding-top: 3px; flex-shrink: 0; }
 .sig-link:hover { color: var(--p); }
 
-/* ── CH3 — LOG ── */
+/* ── CH3. LOG ── */
 .log-list { display: flex; flex-direction: column; flex: 1; overflow-y: auto; }
 .log-entry { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(212,130,154,0.06); }
 .log-entry:last-child { border-bottom: none; }
@@ -338,7 +338,7 @@ body {
 .log-badges { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
 .log-badge { font-size: 0.68rem; padding: 2px 7px; background: var(--p0); border: 1px solid rgba(212,130,154,0.15); color: var(--p3); border-radius: 2px; letter-spacing: 0.05em; }
 
-/* ── CH4 — SPEC ── */
+/* ── CH4. SPEC ── */
 .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex: 1; overflow-y: auto; align-content: start; }
 .spec-group { display: flex; flex-direction: column; gap: 2px; }
 .spec-group-title { font-size: 0.7rem; color: var(--p); letter-spacing: 0.15em; text-transform: uppercase; padding-bottom: 6px; border-bottom: 1px solid rgba(212,130,154,0.15); margin-bottom: 4px; }
@@ -490,6 +490,36 @@ body {
   .mobile-probe:hover { background: rgba(212,130,154,0.18); box-shadow: 0 0 12px rgba(212,130,154,0.2); }
 }
 
+
+/* Readable text within the existing scope palette. */
+:root { --p9: #e6a5b9; --p7: #dfa0b4; --p5: #d49aaf; --p3: #b78d9c; }
+.brand-model, .ctrl-sect-lbl, .ch-btn-ch, .ch-btn-name,
+.knob-lbl, .port-lbl, .chassis-serial { color: #b78d9c; }
+.screen-vignette { box-shadow: inset 0 0 90px rgba(0,0,0,0.15); }
+.sig-body { min-width: 0; }
+.capstone-details { margin-top: 12px; color: var(--p7); font-size: 0.85rem; line-height: 1.7; }
+.capstone-details summary { cursor: pointer; color: var(--p9); padding: 8px 0; }
+.capstone-copy { display: grid; gap: 12px; padding-top: 10px; }
+.capstone-copy h3 { font-size: 0.9rem; color: var(--p9); font-weight: 500; }
+.capstone-copy ul { padding-left: 20px; }
+.board-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.board-grid figure { min-width: 0; }
+.board-grid img { display: block; width: 100%; height: auto; border-radius: 3px; }
+.board-grid figcaption { padding-top: 8px; }
+.board-grid strong, .photo-placeholder strong { color: var(--p9); font-weight: 500; }
+.photo-placeholder { border: 1px dashed var(--p3); padding: 12px; border-radius: 3px; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--p9); outline-offset: 3px; }
+@media (max-width: 700px) {
+  .board-grid { grid-template-columns: 1fr; }
+  .spec-grid { grid-template-columns: 1fr; }
+  .spec-row { flex-wrap: wrap; }
+  .signal-event { gap: 8px; }
+  .ch-strip { flex-wrap: wrap; row-gap: 4px; }
+  .readout { min-width: 0; }
+  .r-val { font-size: clamp(0.7rem, 3vw, 1.1rem); overflow-wrap: anywhere; }
+  .r-sub { overflow-wrap: anywhere; }
+}
+
 </style>
 </head>
 <body>
@@ -558,7 +588,7 @@ body {
         <div class="ch1-tagline">Senior CPE · CSU Sacramento · Graduating Fall 2026 · Open to Internships</div>
 
         <div class="ch1-bio">
-          I'm a senior Computer Engineering student at CSU Sacramento, graduating this fall and looking for engineering roles. I work across <strong>embedded systems and firmware</strong>: STM32 and ESP32 hardware, PCB design, and bare-metal C/C++. That includes <strong>wearable biomedical devices</strong> — my current project is a glucose monitor on the ESP32-S3 that pairs directly with a Dexcom G7 over BLE, reads live glucose values on-device, and alerts a caregiver over Wi-Fi, no app or cloud required. I'm also building out <strong>cybersecurity and IT operations</strong> experience through an internship with FI$Cal, and I have experience mentoring <strong>first-generation students</strong> through TRIO, which has shaped how I think about what engineering is actually for.
+          I'm a senior Computer Engineering student at Sacramento State. For our <strong>Automated Hydroponic Greenhouse</strong> capstone, I designed four custom boards in KiCad around an STM32H753. My work covers schematic capture, component selection, layout, documentation, and lighting firmware in embedded C/C++. I taught myself KiCad over the summer, even though it felt out of my scope at first. The redesigned lighting board is fabricated. <strong>Assembly, testing, and hardware validation are next.</strong>
         </div>
 
         <div class="ch1-tags">
@@ -567,6 +597,7 @@ body {
           <span class="ch1-tag">BLE</span>
           <span class="ch1-tag">PCB Design</span>
           <span class="ch1-tag">C / C++</span>
+          <span class="ch1-tag">KiCad</span>
           <span class="ch1-tag">EasyEDA</span>
           <span class="ch1-tag">mbedTLS</span>
           <span class="ch1-tag">Cybersecurity</span>
@@ -591,15 +622,55 @@ body {
           <div class="signal-event featured">
             <div class="sig-marker"><div class="sig-dot"></div><div class="sig-line"></div></div>
             <div class="sig-body">
-              <div class="sig-meta">Capstone · In Progress</div>
+              <div class="sig-meta">Senior capstone · Spring to Fall 2026 · In progress</div>
               <div class="sig-title">Automated Hydroponic Greenhouse</div>
-              <div class="sig-desc">4-channel MOSFET PCB driving multi-wavelength LEDs (440nm, 660nm, 850nm) via PWM. STM32 firmware with 14 crop-specific lighting profiles. Fabricated through JLCPCB.</div>
+              <div class="sig-desc">Team project at Sacramento State built around an STM32H753 and four custom boards. I designed all four in KiCad and wrote the lighting firmware. The redesigned lighting board is fabricated. Assembly and testing are next.</div>
               <div class="sig-tags">
                 <span class="sig-tag">STM32</span><span class="sig-tag">PWM</span>
-                <span class="sig-tag">EasyEDA</span><span class="sig-tag">JLCPCB</span><span class="sig-tag">C</span>
+                <span class="sig-tag">KiCad</span><span class="sig-tag">LTspice</span><span class="sig-tag">EasyEDA</span><span class="sig-tag">JLCPCB</span><span class="sig-tag">C</span>
               </div>
+              <details class="capstone-details" id="capstone">
+                <summary>Explore the four boards + current progress</summary>
+                <div class="capstone-copy">
+                  <h3>Four boards, one greenhouse</h3>
+                  <p>I handled schematic capture, component selection, layout, and documentation for all four boards.</p>
+                  <div class="board-grid">
+                    <figure>
+                      <img src="assets/capstone/brain-pcb.png" alt="KiCad 3D render of the controller board with a central microcontroller and connectors around its edges" width="1313" height="768" loading="lazy">
+                      <figcaption><strong>Controller (brain)</strong><br>4 layers, about 95.5 × 91 mm. USB D+/D- routing, SWD/UART debug headers, analog sensor filtering, DS18B20 temperature probe connections, an ILI9341 display connection, and PWM/pump output connectors.</figcaption>
+                    </figure>
+                    <figure>
+                      <img src="assets/capstone/power-pcb.png" alt="KiCad 3D render of the power distribution board with regulators, capacitors, fuses, and power connectors" width="1313" height="768" loading="lazy">
+                      <figcaption><strong>Power distribution</strong><br>4 layers, about 100 × 100 mm. Buck regulators for 3.3 V and 5 V rails, TVS input protection, per-branch fusing, and a MOSFET-switched channel with a gate driver. I simulated this circuitry in LTspice before building it.</figcaption>
+                    </figure>
+                    <figure>
+                      <img src="assets/capstone/light-pcb.png" alt="KiCad 3D render of the redesigned LED lighting board with PWM input and LED output connectors" width="1313" height="768" loading="lazy">
+                      <figcaption><strong>LED lighting</strong><br>2 layers, about 58 × 68 mm. Four PWM-controlled FQP30N06L MOSFET channels for 440 nm blue, 660 nm red, 850 nm near-infrared, and full-spectrum white LEDs. I also wrote the lighting firmware.</figcaption>
+                    </figure>
+                    <figure>
+                      <img src="assets/capstone/pump-pcb.png" alt="KiCad 3D render of the pump driver board with five repeated driver circuits and pump connectors" width="1313" height="768" loading="lazy">
+                      <figcaption><strong>Pump driver</strong><br>2 layers, about 138 × 85 mm. I laid out this board from a teammate's breadboard prototype.</figcaption>
+                    </figure>
+                  </div>
+                  <h3>Lighting profiles</h3>
+                  <p>I researched lighting schedules for 14 crops and turned them into blue, red, and near-infrared duty-cycle profiles across four growth stages.</p>
+                  <h3>From EasyEDA to KiCad</h3>
+                  <p>I designed the first lighting board in EasyEDA, had it fabricated through JLCPCB, and soldered it by hand. Our senior design showcase was in May 2026.</p>
+                  <p>Over the summer, I taught myself KiCad and used it to redesign and optimize the lighting board. It felt out of my scope at first. The new version is fabricated, with assembly and testing planned for the next few weeks.</p>
+                  <h3>Design review</h3>
+                  <p>I ran ERC and DRC during design review and used fabrication-oriented design rules. On the pump board, I used a dedicated power net class with 1.2 mm tracks and 0.25 mm clearance. I used wider traces and copper pours for power and switched loads. Hardware current and thermal validation is still pending.</p>
+                  <h3>What's next</h3>
+                  <ul>
+                    <li>Assemble the redesigned lighting board.</li>
+                    <li>Test the assembled hardware and lighting firmware.</li>
+                    <li>Validate hardware current and thermal behavior.</li>
+                  </ul>
+                  <div class="photo-placeholder"><strong>Photo placeholder: assembled lighting board</strong><br>Add a clear photo of the hand-soldered EasyEDA board. Add the KiCad version after assembly, with each revision labeled.</div>
+                  <div class="photo-placeholder"><strong>Photo placeholder: bench testing</strong><br>Add a bench setup photo and an oscilloscope or logic analyzer screenshot after testing. Include what was measured and the test conditions.</div>
+                </div>
+              </details>
             </div>
-            <a href="https://github.com/oudehm" class="sig-link" target="_blank" rel="noopener">GH →</a>
+            <a href="https://github.com/oudehm/seniorDesignPCB" class="sig-link" target="_blank" rel="noopener noreferrer" aria-label="Capstone GitHub repository">GH →</a>
           </div>
 
           <div class="signal-event featured">
@@ -693,10 +764,10 @@ body {
           <div class="log-entry">
             <div class="log-tick"><div class="log-tick-mark"></div><div class="log-tick-line"></div></div>
             <div class="log-body">
-              <div class="log-date">2024 — Present</div>
+              <div class="log-date">2024. Present</div>
               <div class="log-role">B.S. Computer Engineering</div>
               <div class="log-place">CSU Sacramento</div>
-              <div class="log-desc">Embedded systems design, digital logic, hardware-software integration. Senior capstone: custom MOSFET PCB, STM32 firmware, multi-wavelength LED control. Expected <strong>Fall 2026</strong>.</div>
+              <div class="log-desc">Embedded systems design, digital logic, hardware-software integration. Senior capstone: four custom KiCad boards for an STM32H753 greenhouse system, plus lighting firmware. Assembly, testing, and validation are in progress. Expected <strong>Fall 2026</strong>.</div>
               <div class="log-badges">
                 <span class="log-badge">Embedded Systems</span>
                 <span class="log-badge">Digital Design</span>
@@ -708,10 +779,10 @@ body {
           <div class="log-entry">
             <div class="log-tick"><div class="log-tick-mark"></div><div class="log-tick-line"></div></div>
             <div class="log-body">
-              <div class="log-date">Aug 2026 — Present</div>
+              <div class="log-date">Aug 2026. Present</div>
               <div class="log-role">Information Technology Student Assistant</div>
               <div class="log-place">FI$Cal · Sacramento, CA</div>
-              <div class="log-desc">Rotating across two IT subdivisions — the Enterprise Security Services Office (cybersecurity) and the Business Application Services Office. Reviewing and updating internal policy and procedure documentation via SharePoint, logging requests through the office's ticketing system, and building a working understanding of business process mapping.</div>
+              <div class="log-desc">Rotating across two IT subdivisions. the Enterprise Security Services Office (cybersecurity) and the Business Application Services Office. Reviewing and updating internal policy and procedure documentation via SharePoint, logging requests through the office's ticketing system, and building a working understanding of business process mapping.</div>
               <div class="log-badges">
                 <span class="log-badge">Cybersecurity</span>
                 <span class="log-badge">IT Operations</span>
@@ -723,7 +794,7 @@ body {
           <div class="log-entry">
             <div class="log-tick"><div class="log-tick-mark"></div><div class="log-tick-line"></div></div>
             <div class="log-body">
-              <div class="log-date">Nov 2022 — Jul 2026</div>
+              <div class="log-date">Nov 2022. Jul 2026</div>
               <div class="log-role">Outreach Specialist · Mentor · Tutor</div>
               <div class="log-place">TRIO Educational Talent Search · American River College</div>
               <div class="log-desc">Supported <strong>150+ first-generation and low-income middle school students</strong>. Built the program's entire digital records infrastructure: intake workflows, progress tracking, federal DOE compliance documentation.</div>
@@ -738,7 +809,7 @@ body {
           <div class="log-entry">
             <div class="log-tick"><div class="log-tick-mark"></div></div>
             <div class="log-body">
-              <div class="log-date">2022 — 2024</div>
+              <div class="log-date">2022. 2024</div>
               <div class="log-role">A.S. Computer Science · A.S. Physical Science & Math</div>
               <div class="log-place">American River College</div>
               <div class="log-desc">Graduated with two associate degrees simultaneously. Data structures, algorithms, systems programming, foundational physical sciences and mathematics.</div>
@@ -769,23 +840,24 @@ body {
             <div class="spec-group-title">Embedded Systems</div>
             <div class="spec-row"><span class="spec-key">MCU</span><span class="spec-val">STM32 L432KC, H753ZIT6</span></div>
             <div class="spec-row"><span class="spec-key">MCU</span><span class="spec-val">ESP32, XIAO ESP32-S3</span></div>
-            <div class="spec-row"><span class="spec-key">Protocols</span><span class="spec-val">UART · SPI · I2C · PWM</span></div>
+            <div class="spec-row"><span class="spec-key">Protocols</span><span class="spec-val">UART · SPI · USB · I2C · PWM</span></div>
             <div class="spec-row"><span class="spec-key">Wireless</span><span class="spec-val">BLE · mbedTLS · J-PAKE</span></div>
             <div class="spec-row"><span class="spec-key">RTOS</span><span class="spec-val">FreeRTOS concepts</span></div>
           </div>
 
           <div class="spec-group">
             <div class="spec-group-title">Hardware & PCB</div>
-            <div class="spec-row"><span class="spec-key">EDA</span><span class="spec-val">EasyEDA</span></div>
-            <div class="spec-row"><span class="spec-key">Fab</span><span class="spec-val">JLCPCB</span></div>
+            <div class="spec-row"><span class="spec-key">EDA</span><span class="spec-val">KiCad · EasyEDA</span></div>
+            <div class="spec-row"><span class="spec-key">Fab</span><span class="spec-val">JLCPCB fabrication · hand soldering</span></div>
             <div class="spec-row"><span class="spec-key">Sim</span><span class="spec-val">LTspice · PSpice</span></div>
+            <div class="spec-row"><span class="spec-key">Debug</span><span class="spec-val">Oscilloscope · logic analyzer</span></div>
             <div class="spec-row"><span class="spec-key">Circuits</span><span class="spec-val">MOSFET driver design</span></div>
-            <div class="spec-row"><span class="spec-key">Layout</span><span class="spec-val">Schematic + PCB review</span></div>
+            <div class="spec-row"><span class="spec-key">Layout</span><span class="spec-val">Schematic capture · component selection · layout · documentation · ERC/DRC</span></div>
           </div>
 
           <div class="spec-group">
             <div class="spec-group-title">Languages</div>
-            <div class="spec-row"><span class="spec-key">Primary</span><span class="spec-val">C / C++</span></div>
+            <div class="spec-row"><span class="spec-key">Primary</span><span class="spec-val">Embedded C / C++</span></div>
             <div class="spec-row"><span class="spec-key">Scripting</span><span class="spec-val">Python</span></div>
             <div class="spec-row"><span class="spec-key">OOP</span><span class="spec-val">Java</span></div>
             <div class="spec-row"><span class="spec-key">Web</span><span class="spec-val">HTML · CSS · JS</span></div>
@@ -1000,9 +1072,9 @@ const READOUTS = {
     { label:'TREND',   val:'↑',        sub:'trajectory' },
   ],
   4: [
-    { label:'PROTOCOLS', val:'5',      sub:'UART SPI I2C PWM BLE' },
+    { label:'PROTOCOLS', val:'6',      sub:'UART SPI USB I2C PWM BLE' },
     { label:'LANGUAGES', val:'4',      sub:'C C++ Python Java' },
-    { label:'TOOLS',     val:'6',      sub:'EDA fab sim' },
+    { label:'TOOLS',     val:'KiCad',  sub:'EDA · fabrication · simulation' },
     { label:'V RANGE',   val:'3.3/5V', sub:'logic levels' },
   ],
 };
